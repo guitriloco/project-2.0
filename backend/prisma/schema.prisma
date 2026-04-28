@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  credits   Float    @default(100.0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  proposals Proposal[]
+  votes     Vote[]
+}
+
+model Proposal {
+  id          String         @id @default(cuid())
+  title       String
+  description String
+  status      ProposalStatus @default(PENDING)
+  rationale   String?
+  creatorId   String
+  creator     User           @relation(fields: [creatorId], references: [id])
+  
+  votes       Vote[]
+  
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Vote {
+  id         String   @id @default(cuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id])
+  voterId    String?
+  voter      User?    @relation(fields: [voterId], references: [id])
+  aiVoter    String?
+  weight     Float
+  support    Boolean
+  
+  createdAt  DateTime @default(now())
+}
+
+model GovernanceEvent {
+  id        String   @id @default(cuid())
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+}
+
+enum ProposalStatus {
+  PENDING
+  ACTIVE
+  PASSED
+  REJECTED
+  EXECUTED
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String
+  name      String
+  payload   Json
+  createdAt DateTime @default(now())
+}
+
+model DecisionLog {
+  id          String   @id @default(cuid())
+  action      String
+  rationale   String
+  impact      String?
+  confidence  Float
+  status      String   @default("LOGGED")
+  createdAt   DateTime @default(now())
+}
+
+model EthicalCore {
+  id              String   @id @default(cuid())
+  directiveHash   String   @unique
+  formalProof     String
+  integrityStatus String   @default("VERIFIED")
+  lastHyperAudit  DateTime @default(now())
+  createdAt       DateTime @default(now())
+}
+
+model SubProject {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  status      String
+  createdAt   DateTime @default(now())
+}
