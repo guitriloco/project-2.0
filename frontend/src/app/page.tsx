@@ -256,6 +256,33 @@ export default function Home() {
             Reality Kernel: TRANSCENDENT (Phase 170)
           </p>
         </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <h2 className="mb-3 text-2xl font-semibold">
+            DNA Transcendence <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            Substrate Independence: ACTIVE (Phase 179)
+          </p>
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <h2 className="mb-3 text-2xl font-semibold">
+            Reality Generation <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            New Worlds: ACTIVE (Phase 185)
+          </p>
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <h2 className="mb-3 text-2xl font-semibold">
+            Final Kernel <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            Absolute Logic: TERMINAL (Phase 195)
+          </p>
+        </div>
       </div>
     </main>
   );

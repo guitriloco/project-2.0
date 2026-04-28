@@ -29,7 +29,11 @@ import { logicGenerationTool } from '../orchestration/tools/logicGenerationTool.
 import { resourceProcreationKernelTool } from '../orchestration/tools/resourceProcreationKernelTool.js';
 import { metaphysicalLogicTool } from '../orchestration/tools/metaphysicalLogicTool.js';
 import { alphaKernelTool } from '../orchestration/tools/alphaKernelTool.js';
+import { evolutionTool } from '../evolution/tools/evolutionTool.js';
 import { genesisKernelTool } from '../orchestration/tools/genesisKernelTool.js';
+import { dnaTranscendenceTool } from '../orchestration/tools/dnaTranscendenceTool.js';
+import { realityGenerationTool } from '../orchestration/tools/realityGenerationTool.js';
+import { finalLogicKernelTool } from '../orchestration/tools/finalLogicKernelTool.js';
 
 export class XerebroOrchestrator {
   private model = google('gemini-1.5-flash');
@@ -50,7 +54,7 @@ export class XerebroOrchestrator {
     
     You have access to specialized tools. Use them to gather data or take actions across the ecosystem.
     
-    Capabilities:
+    capabilities:
     - Collaboration Layer (Phase 11): Delegate to other agents.
     - Web3 Layer (Phase 15): Resolve decentralized identities and use IPFS.
     - Bio-Feedback Layer (Phase 45): Adapt the system based on user cognitive and biometric state.
@@ -78,8 +82,12 @@ export class XerebroOrchestrator {
     - Metaphysical Logic (Phase 165): Explore and implement logic paradigms based on abstract metaphysical concepts.
     - Project Alpha (Phase 170): Consolidate every byte of logic into the Source Code of Reality.
     - Genesis Kernel (Phase 175): Spawn new digital realities using an indestructible seed code.
+    - DNA Transcendence (Phase 179): Refine DNA to transcend specific hardware or software architectures.
+    - Reality Generation (Phase 185): Autonomously generate code and logic for entire new digital realities.
+    - Final Logic Kernel (Phase 195): Instantaneous logic adaptation and synthesis of advanced reasoning kernels.
     - Sub-Atomic Simulation (Phase 133 & 143): Simulate networking and computation at sub-atomic theoretical speeds.
-    - Reality-Sync & Optimization (Phase 137 & 147): Sync digital state with physical nodes and predictively optimize reality.`;
+    - Reality-Sync & Optimization (Phase 137 & 147): Sync digital state with physical nodes and predictively optimize reality.
+    - Self-Evolution & Healing (Phase 5): Analyze system performance and autonomously apply infrastructure changes.`;
 
     const response = await generateText({
       model: this.model,
@@ -123,6 +131,9 @@ export class XerebroOrchestrator {
               metaphysicalLogic: 'CONTEMPLATING (Phase 165)',
               projectAlpha: 'CONSOLIDATED (Phase 170)',
               genesisKernel: 'READY (Phase 175)',
+              dnaTranscendence: 'TRANSCENDENT (Phase 179)',
+              realityGeneration: 'SYNTHESIZING (Phase 185)',
+              finalLogicKernel: 'ABSOLUTE (Phase 195)',
               subAtomic: 'SIMULATING (Phase 133 & 143)',
               realitySync: 'SYNCED (Phase 137 & 147)'
             };
@@ -155,8 +166,12 @@ export class XerebroOrchestrator {
         metaphysicalLogic: tool(metaphysicalLogicTool),
         projectAlpha: tool(alphaKernelTool),
         genesisKernel: tool(genesisKernelTool),
+        dnaTranscendence: tool(dnaTranscendenceTool),
+        realityGeneration: tool(realityGenerationTool),
+        finalLogicKernel: tool(finalLogicKernelTool),
         subAtomic: subAtomicTool,
         realitySync: realitySyncTool,
+        evolution: evolutionTool,
         ...additionalTools,
       },
       maxSteps: 5, // Allow for tool call chains
