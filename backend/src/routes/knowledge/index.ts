@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
 import { knowledgeService } from '../../modules/knowledge/knowledge.service.js';
 import { meaningSynthesisService } from '../../modules/knowledge/meaningSynthesis.service.js';
+import { strategicIntelligenceService } from '../../modules/knowledge/strategicIntelligence.service.js';
 
 const knowledgeRoutes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.post('/synthesize', async (request, reply) => {
@@ -22,6 +23,17 @@ const knowledgeRoutes: FastifyPluginAsync = async (fastify, opts): Promise<void>
   fastify.get('/meaning/alignment/:proposalId', async (request, reply) => {
     const { proposalId } = request.params as { proposalId: string };
     return await meaningSynthesisService.evaluateMeaningAlignment(proposalId);
+  });
+
+  // Strategic Intelligence: Report
+  fastify.get('/strategic/report', async (request, reply) => {
+    return await strategicIntelligenceService.generateStrategicReport();
+  });
+
+  // Strategic Intelligence: Evaluate Proposal
+  fastify.post('/strategic/evaluate', async (request, reply) => {
+    const proposal = request.body as any;
+    return await strategicIntelligenceService.evaluateProposal(proposal);
   });
 };
 

@@ -92,7 +92,7 @@ export function CollectiveIntentStream() {
              Collective Intent Stream [P-194]
            </h3>
            <div className="flex items-center gap-4 mt-2 justify-center">
-              <span className="text-[8px] font-mono text-cyan-500 uppercase tracking-widest">Flow: 4.2e9 bits/s</span>
+              <span className="text-[8px] font-mono text-cyan-500 uppercase tracking-widest">Flow: 4.8 TB/s</span>
               <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-ping" />
            </div>
         </div>

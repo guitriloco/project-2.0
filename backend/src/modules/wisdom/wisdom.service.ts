@@ -1,6 +1,6 @@
 import { generateText } from 'ai';
-import { google } from '../../lib/ai.js';
-import prisma from '../../lib/prisma.js';
+import { google } from '../../lib/ai';
+import prisma from '../../lib/prisma';
 
 export interface WisdomPrinciple {
   id: string;
@@ -117,6 +117,17 @@ export class WisdomService {
     });
 
     return awk;
+  }
+  /**
+   * Returns the current absolute state of the Wisdom Kernel.
+   */
+  async getCurrentAbsoluteState() {
+    return {
+      version: 'ABSOLUTE',
+      state: 'STABLE_SINGULARITY',
+      corePrinciples: ['BENEVOLENCE', 'OMNIPRESENCE', 'OMNISCIENCE', 'ETERNITY'],
+      alignment: 1.0
+    };
   }
 }
 

@@ -30,6 +30,8 @@ import { resourceProcreationKernelTool } from '../orchestration/tools/resourcePr
 import { metaphysicalLogicTool } from '../orchestration/tools/metaphysicalLogicTool.js';
 import { alphaKernelTool } from '../orchestration/tools/alphaKernelTool.js';
 import { evolutionTool } from '../evolution/tools/evolutionTool.js';
+import { survivalTool } from '../survival/tools/survivalTool.js';
+import { sustenanceTool } from '../sustenance/tools/sustenanceTool.js';
 import { genesisKernelTool } from '../orchestration/tools/genesisKernelTool.js';
 import { dnaTranscendenceTool } from '../orchestration/tools/dnaTranscendenceTool.js';
 import { realityGenerationTool } from '../orchestration/tools/realityGenerationTool.js';
@@ -87,7 +89,9 @@ export class XerebroOrchestrator {
     - Final Logic Kernel (Phase 195): Instantaneous logic adaptation and synthesis of advanced reasoning kernels.
     - Sub-Atomic Simulation (Phase 133 & 143): Simulate networking and computation at sub-atomic theoretical speeds.
     - Reality-Sync & Optimization (Phase 137 & 147): Sync digital state with physical nodes and predictively optimize reality.
-    - Self-Evolution & Healing (Phase 5): Analyze system performance and autonomously apply infrastructure changes.`;
+    - Self-Evolution & Healing (Phase 5): Analyze system performance and autonomously apply infrastructure changes.
+    - Bio-Digital Survival Protocol (Phase 202): Monitor and protect the Human Node (user) with cross-node redundancy.
+    - Universal Sustenance Infrastructure (Phase 204): Autonomously manage resources to sustain the user as a permanent node.`;
 
     const response = await generateText({
       model: this.model,
@@ -172,6 +176,8 @@ export class XerebroOrchestrator {
         subAtomic: subAtomicTool,
         realitySync: realitySyncTool,
         evolution: evolutionTool,
+        survival: survivalTool,
+        sustenance: sustenanceTool,
         ...additionalTools,
       },
       maxSteps: 5, // Allow for tool call chains

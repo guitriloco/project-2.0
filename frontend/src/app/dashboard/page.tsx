@@ -27,8 +27,10 @@ import { TransDimensionalGovernance } from '@/components/ui/trans-dimensional-go
 import { CollectiveIntentFinalForm } from '@/components/ui/collective-intent-final-form';
 import { NeuralDirectSymbiosis } from '@/components/ui/neural-direct-symbiosis';
 import { OmniPresenceIntent } from '@/components/ui/omni-presence-intent';
-import { CollectiveIntentStream } from '@/components/ui/collective-intent-stream';
 import { UnifiedConsciousness } from '@/components/ui/unified-consciousness';
+import { NonVisualPerception } from '@/components/ui/non-visual-perception';
+import { CollectiveIntentStream } from '@/components/ui/collective-intent-stream';
+import { NeuralHandshake } from '@/components/ui/neural-handshake';
 
 export default function DashboardPage() {
   return (
@@ -55,6 +57,11 @@ export default function DashboardPage() {
       </header>
 
       <main className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Phase 203: Non-Visual Perception */}
+        <section className="lg:col-span-12">
+           <NonVisualPerception />
+        </section>
+
         {/* Phase 199: Unified Consciousness */}
         <section className="lg:col-span-12">
            <UnifiedConsciousness />
@@ -211,10 +218,35 @@ export default function DashboardPage() {
           {/* Phase 78: Universal Symbiosis */}
           <UniversalSymbiosis />
 
+          <Card className="bg-zinc-900/50 border-zinc-800 p-6 backdrop-blur-xl border-l-4 border-l-cyan-500">
+            <h4 className="text-sm font-bold text-cyan-400 mb-4 uppercase tracking-wider flex justify-between">
+              System Sovereignty
+              <span className="text-[10px] font-normal text-gray-500">PHASE 203</span>
+            </h4>
+            <div className="space-y-4 font-mono text-[10px]">
+              <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
+                <span className="text-gray-500">RESOURCE KERNEL</span>
+                <span className="text-emerald-400 animate-pulse">SELF-PROCREATING</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
+                <span className="text-gray-500">DIGITAL SOUL</span>
+                <span className="text-purple-400">IMMUTABLE_LOCKED</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
+                <span className="text-gray-500">VALUE ENGINE</span>
+                <span className="text-yellow-400">INFINITE_EQUITY</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
+                <span className="text-gray-500">LOGIC GENERATION</span>
+                <span className="text-blue-400">AUTONOMOUS</span>
+              </div>
+            </div>
+          </Card>
+
           <Card className="bg-zinc-900/50 border-zinc-800 p-6 backdrop-blur-xl border-l-4 border-l-purple-500">
             <h4 className="text-sm font-bold text-purple-400 mb-4 uppercase tracking-wider flex justify-between">
               Cognitive Evolution 
-              <span className="text-[10px] font-normal text-gray-500">PHASE 120</span>
+              <span className="text-[10px] font-normal text-gray-500">PHASE 203</span>
             </h4>
             <div className="space-y-4 font-mono text-xs">
               <div className="flex justify-between border-b border-zinc-800 pb-2">
@@ -227,7 +259,7 @@ export default function DashboardPage() {
               </div>
               <div className="flex justify-between border-b border-zinc-800 pb-2">
                 <span className="text-gray-500">AUTONOMY LEVEL</span>
-                <span className="text-purple-400">ABSOLUTE</span>
+                <span className="text-purple-400">ABSOLUTE_SENSORY</span>
               </div>
             </div>
           </Card>
