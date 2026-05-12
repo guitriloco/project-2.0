@@ -1,0 +1,99 @@
+import prisma from '../../lib/prisma.js';
+
+export interface NectarSignal {
+  id: string;
+  source: 'YES' | 'ZENITH';
+  type: string;
+  payload: any;
+  yield_roi?: number;
+  timestamp: number;
+}
+
+export class NectarAggregatorService {
+  private yesUrl = 'http://localhost:8012';
+  private zenithUrl = 'http://localhost:8004';
+  private signals: NectarSignal[] = [];
+  private maxSignals = 100;
+
+  constructor() {
+    // In a real environment, we would start a polling loop here
+    // But for this task, we'll provide methods to fetch and aggregate
+  }
+
+  async fetchYesSignals(): Promise<NectarSignal[]> {
+    try {
+      const response = await fetch(`${this.yesUrl}/nectar/events`);
+      if (!response.ok) throw new Error(`YES API error: ${response.statusText}`);
+      const data = await response.json();
+      
+      return (data.events || []).map((event: any) => ({
+        id: `yes-${event.timestamp}`,
+        source: 'YES',
+        type: event.nectar_classification || 'High Yield',
+        payload: event,
+        yield_roi: event.yield_roi,
+        timestamp: event.timestamp * 1000
+      }));
+    } catch (error) {
+      console.error('Error fetching YES signals:', error);
+      return [];
+    }
+  }
+
+  async fetchZenithSignals(): Promise<NectarSignal[]> {
+    // Zenith signals are often siphoned resources or mesh updates
+    try {
+      const response = await fetch(`${this.zenithUrl}/ledger/status`);
+      if (!response.ok) throw new Error(`ZENITH API error: ${response.statusText}`);
+      const data = await response.json();
+      
+      // Construct a signal from Zenith status
+      return [{
+        id: `zenith-${Date.now()}`,
+        source: 'ZENITH',
+        type: 'MESH_INTEGRITY',
+        payload: data,
+        timestamp: Date.now()
+      }];
+    } catch (error) {
+      console.error('Error fetching ZENITH signals:', error);
+      return [];
+    }
+  }
+
+  async aggregateSignals(): Promise<NectarSignal[]> {
+    const [yesSignals, zenithSignals] = await Promise.all([
+      this.fetchYesSignals(),
+      this.fetchZenithSignals()
+    ]);
+
+    const newSignals = [...yesSignals, ...zenithSignals];
+    
+    // Sort by timestamp descending
+    newSignals.sort((a, b) => b.timestamp - a.timestamp);
+
+    // Update local cache
+    this.signals = [...newSignals, ...this.signals].slice(0, this.maxSignals);
+
+    // Log to analytics if they are "Absolute Nectar"
+    for (const signal of newSignals) {
+      if (signal.yield_roi && signal.yield_roi > 0.98) {
+        await prisma.analyticsEvent.create({
+          data: {
+            type: 'NECTAR_AGGREGATOR',
+            name: 'ABSOLUTE_NECTAR_DETECTED',
+            payload: signal
+          }
+        });
+      }
+    }
+
+    return this.signals;
+  }
+
+  getSignals() {
+    return this.signals;
+  }
+}
+
+export const nectarAggregatorService = new NectarAggregatorService();

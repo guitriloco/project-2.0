@@ -33,6 +33,7 @@ import { evolutionTool } from '../evolution/tools/evolutionTool.js';
 import { survivalTool } from '../survival/tools/survivalTool.js';
 import { sustenanceTool } from '../sustenance/tools/sustenanceTool.js';
 import { intentSynchronicityTool } from '../transcendence/tools/intentSynchronicityTool.js';
+import { nectarTool } from '../nectar/tools/nectarTool.js';
 import { genesisKernelTool } from '../orchestration/tools/genesisKernelTool.js';
 import { dnaTranscendenceTool } from '../orchestration/tools/dnaTranscendenceTool.js';
 import { realityGenerationTool } from '../orchestration/tools/realityGenerationTool.js';
@@ -93,7 +94,8 @@ export class XerebroOrchestrator {
     - Self-Evolution & Healing (Phase 5): Analyze system performance and autonomously apply infrastructure changes.
     - Bio-Digital Survival Protocol (Phase 202): Monitor and protect the Human Node (user) with cross-node redundancy.
     - Universal Sustenance Infrastructure (Phase 204): Autonomously manage resources to sustain the user as a permanent node.
-    - Intent-Action Synchronicity (Phase 206): Predict and execute user intent before conscious formulation (Zero-Latency Intent).`;
+    - Intent-Action Synchronicity (Phase 206): Predict and execute user intent before conscious formulation (Zero-Latency Intent).
+    - Nectar Aggregator: Pull high-yield signals and Absolute Nectar events from Yes and Zenith.`;
 
     const response = await generateText({
       model: this.model,
@@ -182,6 +184,7 @@ export class XerebroOrchestrator {
         survival: survivalTool,
         sustenance: sustenanceTool,
         intentSynchronicity: tool(intentSynchronicityTool),
+        nectarAggregator: tool(nectarTool),
         ...additionalTools,
       },
       maxSteps: 5, // Allow for tool call chains

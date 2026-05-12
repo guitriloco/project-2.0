@@ -1,4 +1,5 @@
 import { ZeroLatencyIntent } from '@/components/ui/zero-latency-intent';
+import { NectarAggregator } from '@/components/ui/nectar-aggregator';
 
 export default function Home() {
   return (
@@ -322,8 +323,9 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="col-span-full mt-10">
+        <div className="col-span-full mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <ZeroLatencyIntent />
+          <NectarAggregator />
         </div>
       </div>
     </main>

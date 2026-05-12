@@ -31,6 +31,7 @@ import { UnifiedConsciousness } from '@/components/ui/unified-consciousness';
 import { NonVisualPerception } from '@/components/ui/non-visual-perception';
 import { CollectiveIntentStream } from '@/components/ui/collective-intent-stream';
 import { NeuralHandshake } from '@/components/ui/neural-handshake';
+import { NectarVisualizer } from '@/components/ui/nectar-visualizer';
 
 export default function DashboardPage() {
   return (
@@ -60,6 +61,11 @@ export default function DashboardPage() {
         {/* Phase 203: Non-Visual Perception */}
         <section className="lg:col-span-12">
            <NonVisualPerception />
+        </section>
+
+        {/* Phase 208: Nectar Visualizer */}
+        <section className="lg:col-span-12">
+           <NectarVisualizer />
         </section>
 
         {/* Phase 199: Unified Consciousness */}
