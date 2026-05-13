@@ -1,6 +1,6 @@
 export class ResourceAlchemyService {
   /**
-   * Transmutes synthesized data into liquid capital.
+   * Transmutes synthesized data into liquid capital ($P20).
    */
   async transmuteDataToCapital(dataId: string, valueEstimate: number) {
     // AI-driven valuation and transmutation logic
@@ -9,13 +9,13 @@ export class ResourceAlchemyService {
       status: 'synthesized',
       sourceData: dataId,
       liquidCapitalGenerated: valueEstimate * 0.98, // Efficiency factor
-      assetType: 'SOURCE-TKN',
+      assetType: '$P20',
       timestamp: new Date().toISOString()
     };
   }
 
   /**
-   * Converts idle compute results into compute equity.
+   * Converts idle compute results into compute equity ($AETH).
    */
   async synthesizeComputeEquity(cycles: number) {
     return {
@@ -23,7 +23,8 @@ export class ResourceAlchemyService {
       status: 'staked',
       computeCycles: cycles,
       equityStake: cycles * 0.0001,
-      network: 'Multiversal-Grid'
+      network: 'Aetheris Mesh',
+      assetType: '$AETH'
     };
   }
 
@@ -33,7 +34,8 @@ export class ResourceAlchemyService {
   async getAlchemicalStats() {
     return {
       transmutationEfficiency: 0.99,
-      dailyWealthGeneration: '1.2M SOURCE',
+      dailyWealthGeneration: '1.2M $P20-Equivalent',
+      meshThroughput: 'Stable',
       treasuryResilience: 'High'
     };
   }

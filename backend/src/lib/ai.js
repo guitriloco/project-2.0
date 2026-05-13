@@ -10,7 +10,7 @@ let apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 
 // Load from config.json if environment variable is missing
 if (!apiKey) {
-  const configPath = path.join(__dirname, '../../../../ai-brain/config.json');
+  const configPath = path.join(__dirname, '../../../ai-brain/config.json');
   if (fs.existsSync(configPath)) {
     try {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));

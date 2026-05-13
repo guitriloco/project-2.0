@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -26,7 +26,7 @@ model Proposal {
   id          String         @id @default(cuid())
   title       String
   description String
-  status      ProposalStatus @default(PENDING)
+  status      String @default("PENDING")
   rationale   String?
   creatorId   String
   creator     User           @relation(fields: [creatorId], references: [id])
@@ -53,23 +53,15 @@ model Vote {
 model GovernanceEvent {
   id        String   @id @default(cuid())
   type      String
-  payload   Json
+  payload   String
   createdAt DateTime @default(now())
-}
-
-enum ProposalStatus {
-  PENDING
-  ACTIVE
-  PASSED
-  REJECTED
-  EXECUTED
 }
 
 model AnalyticsEvent {
   id        String   @id @default(cuid())
   type      String
   name      String
-  payload   Json
+  payload   String
   createdAt DateTime @default(now())
 }
 
