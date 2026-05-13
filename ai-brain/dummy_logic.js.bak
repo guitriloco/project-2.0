@@ -1,0 +1,6 @@
+
+function harvestData() {
+    console.log("Harvesting data...");
+    return { data: [1, 2, 3] };
+}
+    

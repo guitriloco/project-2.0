@@ -4,7 +4,13 @@ const path = require('path');
 
 // Configuration
 const REPO_PATH = path.join(__dirname, '..');
-const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+const configPath = path.join(__dirname, 'config.json');
+let GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+
+if (!GEMINI_API_KEY && fs.existsSync(configPath)) {
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    GEMINI_API_KEY = config.google_generative_ai_api_key;
+}
 
 function getRecentCommits() {
     try {

@@ -6,6 +6,13 @@ class AetherisMutator {
     constructor() {
         this.strengthMapPath = '/home/team/shared/STRENGTH_MAP.md';
         this.mutationLogPath = path.join(__dirname, 'mutation_log.json');
+        this.configPath = path.join(__dirname, 'config.json');
+        this.apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+
+        if (!this.apiKey && fs.existsSync(this.configPath)) {
+            const config = JSON.parse(fs.readFileSync(this.configPath, 'utf8'));
+            this.apiKey = config.google_generative_ai_api_key;
+        }
     }
 
     async loadStrengths() {
@@ -58,11 +65,11 @@ class AetherisMutator {
         
         // Simulation for prototype
         let mutatedCode = originalCode;
-        if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+        if (!this.apiKey) {
             mutatedCode = `// [MUTATED BY AETHERIS PHASE 210]\n// Strength Injected: ${targetStrength}\n` + originalCode;
         } else {
             // Real AI call would happen here
-            mutatedCode = `// [REAL AI MUTATION PLACEHOLDER]\n` + originalCode;
+            mutatedCode = `// [REAL AI MUTATION WITH KEY: ${this.apiKey.substring(0, 5)}...]\n` + originalCode;
         }
 
         // Backup original
